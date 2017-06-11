@@ -32,7 +32,7 @@ input:focus, select:focus, textarea:focus, button:focus {
 
 body {
   background: url('http://images.unsplash.com/photo-1484480974693-6ca0a78fb36b');
-  background-size: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-color: #12435B;
@@ -93,14 +93,14 @@ body {
 }
 
 .read ul li input[type=checkbox] {
-  transform: scale(3);
-  float: left;
+  transform: scale(1);
   align-items: center;
+  margin-right: 40px;
+  margin-bottom: 20px;
 }
 .delete {
   float: right;
 }
-
-input[type=checkbox]:checked + strikethrough{
-  text-decoration: line-through;
+.edit {
+  float: right;
 }

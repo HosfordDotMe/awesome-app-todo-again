@@ -43,16 +43,24 @@ const TodoApp = {
       button.addEventListener('click', () => this.deleteTodo(index));
     });
   },
+  cacheEditButtons() {
+    this.editButtons = this.root.querySelectorAll('.edit');
+  },
+  bindEditEvents() {
+    this.editButtons.forEach((button, index) => {
+      button.addEventListener('click', () => this.editTodo(index));
+    });
+  },
   cacheCheckMarks() {
     this.checkMarks = this.root.querySelectorAll('.completed');
   },
   bindCheckMarks() {
     this.checkMarks.forEach((checkMark, index) => {
-      checkMark.addEventListener('click', () => this.completeTodo(checkMark,index));
+      checkMark.addEventListener('click', () => this.completeTodo(checkMark, index));
     });
   },
-  completeTodo(check,index) {
-    if (check.checked === true ) {
+  completeTodo(check, index) {
+    if (check.checked === true) {
       this.todos[index].isComplete = true;
     } else {
       this.todos[index].isComplete = false;
@@ -60,6 +68,11 @@ const TodoApp = {
     this.render();
   },
   deleteTodo(index) {
+    this.todos.splice(index, 1);
+    this.render();
+  },
+  editTodo(index) {
+    this.taskInput.value = this.todos[index].task;
     this.todos.splice(index, 1);
     this.render();
   },
@@ -74,9 +87,14 @@ const TodoApp = {
       this.todoList.appendChild(lis);
 
       const deleteButton = document.createElement('button');
-      deleteButton.innerHTML = 'X';
+      deleteButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
       deleteButton.className = 'delete';
       lis.appendChild(deleteButton);
+
+      const editButton = document.createElement('button');
+      editButton.innerHTML = '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>';
+      editButton.className = 'edit';
+      lis.appendChild(editButton);
 
       const checkMark = document.createElement('input');
       checkMark.setAttribute('type', 'checkbox');
@@ -88,6 +106,9 @@ const TodoApp = {
         checkMark.setAttribute('checked', 'true');
       }
     });
+  },
+  renderInput() {
+    this.taskInput = this.root.querySelector('.task-input');
   },
   clearTasks() {
     while (this.todoList.hasChildNodes()) {
@@ -102,6 +123,8 @@ const TodoApp = {
     this.renderTasks();
     this.cacheDeleteButtons();
     this.bindDeleteEvents();
+    this.cacheEditButtons();
+    this.bindEditEvents();
     this.cacheCheckMarks();
     this.bindCheckMarks();
     this.storeLocally();
