@@ -1,0 +1,22 @@
+{
+  "name": "awesome-app-todo-again",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HosfordDotMe/awesome-app-todo-again.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HosfordDotMe/awesome-app-todo-again/issues"
+  },
+  "homepage": "https://github.com/HosfordDotMe/awesome-app-todo-again#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
